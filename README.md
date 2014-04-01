@@ -1,6 +1,6 @@
 # SparkCloud
 
-The SparkCloud.jl package allows you to communicate with a SparkCore device (or devices) via the SparkCloud API from Julia.
+The SparkCloud.jl package allows you to connect your Julia programs to any SparkCore device (or devices) via the SparkCloud API.
 
 ## Getting started ##
 
