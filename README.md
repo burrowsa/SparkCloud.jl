@@ -18,16 +18,20 @@ This will login to the SparkCloud and get an access token for your account. But 
 
 ## Calling functions ##
 
-Now you can start sending commands to your core. Currently only calling functions is supported:
+Now you can start sending commands to your core. You can call the functions defined in your firmware:
 
-    functioncall(core, "brew")
+    callfunction(core, "brew")
 
 or with parameters:
 
-    functioncall(core, "announce", "hello world") 
-    functioncall(core, "goto", 100, 400) 
+    callfunction(core, "announce", "hello world") 
+    callfunction(core, "goto", 100, 400) 
 
-Obviously you can only call the functions that are defined in your firmware.
+## Reading variables ##
+
+And you can read variables defined in your firmware:
+
+    readvariable(core, "temperature")
 
 ## Tinker ##
 
@@ -42,6 +46,10 @@ So to light the built in LED do:
 
     Tinker.digitalwrite(core, "D7", "HIGH")
 
+To flash your core with tinker do:
+
+    flashtinker(core)
+
 ## @sparkfunction ##
 
 The functions in `Tinker` are defined with the help of the handy `@sparkfunction` macro which can be used in your own code to declare Julia a function that maps to a function in your SparkCore's firmware:
@@ -50,4 +58,15 @@ The functions in `Tinker` are defined with the help of the handy `@sparkfunction
       @sparkfunction goto x y
     end
     MyAmazingMachine.goto(100, 400)
+
+## Other goodies ##
+
+The following functions/types/macros are also defined:
+
+  * `@sparkvariable` - like `@sparkfunction` but for variables
+  * `info` - get info on a Spark Core such as its name and what functions/variables it has
+  * `cores` - list all the Spark Cores associated with your account
+  * `AccessToken` - represents an access token for your account on Spark Cloud
+  * `lstokens` - list the access tokens associated with your account
+  * `rmtoken` - delete an access token from your account
 
